@@ -1,0 +1,42 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 250px;
+    background-color: #6b6961;
+    margin-bottom: 10px;
+    gap: 6px;
+    border-radius: 6px;
+    transition: transform ;
+    transition:  0.6s;
+    position: relative;
+    white-space: pre-line;
+}
+
+.card:hover{
+    background-color: white;
+    color:black;
+    transform: scale(1.05);
+}
+
+.poster{
+    border-radius: 10px;
+}
+
+.card-title{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma,  Verdana, sans-serif;
+    font-size: medium;
+}
+
+.subtitle{
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+@media (max-width : 700px) {
+    .card{
+        width: 46%;
+    }
+}

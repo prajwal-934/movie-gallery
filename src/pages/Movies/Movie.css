@@ -1,0 +1,9 @@
+.movie-page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 7px;
+    column-gap: 5px;
+    margin-top: 15px;
+}
+
