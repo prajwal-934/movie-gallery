@@ -23,16 +23,22 @@ const Search = () => {
   const fetchQuery = async () => {
     const { data } = await axios.get(`
     https://api.themoviedb.org/3/search/${type ? 'tv' : 'movie'}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchText}&page=${page}&include_adult=false`)
-    console.log('search', data)
-    console.log(data)
     setContent(data?.results)
     setNumberOfPages(data.total_pages)
   }
 
   useEffect(() => {
-    fetchQuery()
+    if(searchText){
+      fetchQuery()
+    }
+
+    return ()=>{
+      console.log('unmounted')
+    }
   }, [type,page])
 
+  const renderNoResults = type ? <h3>No Movies</h3> : <h3>No Series</h3>
+  console.log(content)
   return (
     <>
       <div className='page-title'>Search</div>
@@ -61,9 +67,9 @@ const Search = () => {
       <div className="search-page-card">
         {
           content && content.map((item) => {
-
             return <CardComponent
               key={item.id}
+              id={item.id}
               poster={item.poster_path}
               title={item.title || item.name}
               release_date={item.release_date || item.first_air_date}
@@ -72,6 +78,10 @@ const Search = () => {
             />
           })
         }
+        
+        {
+          searchText && content.length===0 && type ? <h3>No Series Found </h3> : <h3>No Movies Found</h3>
+         }
         {
           numOfPages > 1 &&
           <CustomNavigation setPage={setPage} numOfPages={numOfPages} />

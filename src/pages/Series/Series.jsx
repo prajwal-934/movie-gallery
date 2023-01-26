@@ -37,9 +37,9 @@ const Series = () => {
       <div className="series-page">
         {
           series && series.map((item) => {
-
             return <CardComponent
               key={item.id}
+              id={item.id}
               poster={item.poster_path}
               title={item.title || item.name}
               release_date={item.release_date || item.first_air_date}

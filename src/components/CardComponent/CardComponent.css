@@ -1,17 +1,4 @@
-.card{
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    width: 250px;
-    background-color: #6b6961;
-    margin-bottom: 10px;
-    gap: 6px;
-    border-radius: 6px;
-    transition: transform ;
-    transition:  0.6s;
-    position: relative;
-    white-space: pre-line;
-}
+
 
 .card:hover{
     background-color: white;
@@ -31,6 +18,12 @@
 
 .subtitle{
     display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+.rating{
+    display: flex;
+    margin-top: 5px;
     justify-content: space-between;
     text-transform: uppercase;
 }
