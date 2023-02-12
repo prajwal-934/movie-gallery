@@ -7,7 +7,7 @@ const useTrending = () => {
     const [error, setError] = useState()
     const [numOfPages, setTotalPages] = useState(0)
     const [page, setPage] = useState(1)
-
+    
     const fetchTrendings = async () => {
         setLoading(true)
         try {
@@ -24,7 +24,8 @@ const useTrending = () => {
       useEffect(() => {
         fetchTrendings()
       }, [page])
-  return [content,loading,error,numOfPages,page]
+
+  return [content,loading,error,numOfPages,setPage,page]
 }
 
 export default useTrending

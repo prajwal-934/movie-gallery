@@ -1,5 +1,5 @@
 import { createTheme, Pagination, ThemeProvider } from '@mui/material'
-import { spacing } from '@mui/system'
+import { useEffect } from 'react'
 import './CustomNavigation'
 
 const darkTheme = createTheme({
@@ -7,8 +7,12 @@ const darkTheme = createTheme({
     mode: 'dark'
   }
 })
-const CustomNavigation = ({ setPage, numOfPages = 10 }) => {
+const CustomNavigation = ({ setPage, numOfPages = 10 ,page}) => {
+
+
+
   const handlePageChange = (page) => {
+   
     window.scroll(0,0)
     setPage(page)
   }

@@ -1,28 +1,18 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CardComponent from '../../components/CardComponent/CardComponent';
+import CircularLoading from '../../components/CircularLoading';
 import CustomNavigation from '../../components/CustomNavigation/CustomNavigation';
 import Genre from '../../components/Genre/Genre';
 import useGenre from '../../hooks/useGenre';
+import useSeries from '../../hooks/useSeries';
 import './Series.css'
 
 const Series = () => {
 
-  const [series, setSeries] = useState([]);
-  const [page, setPage] = useState(1);
-  const [numOfPages, setNumOfPages] = useState(1)
-  const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
-  const genreIdsForUrl = useGenre(selectedGenres)
-  const fetchSeries = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&page=${page}&with_genres=${genreIdsForUrl}`)
-    setSeries(data.results)
-    setNumOfPages(data.total_pages)
-  }
-  useEffect(() => {
-    fetchSeries()
-  }, [page, genreIdsForUrl])
 
+  const [genres,setGenres,selectedGenres,setSelectedGenres,genreIdsForUrl] = useGenre()
+  const [series, loading, error,setPage , numOfPages] = useSeries(genreIdsForUrl)
   return (
     <>
       <div className='page-title'>Sereis</div>
@@ -36,7 +26,7 @@ const Series = () => {
       />
       <div className="series-page">
         {
-          series && series.map((item) => {
+          loading ? <CircularLoading/> :  series && series.map((item) => {
             return <CardComponent
               key={item.id}
               id={item.id}

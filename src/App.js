@@ -5,20 +5,32 @@ import { Container } from "@mui/material";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Trending from "./pages/Trending/Trending";
 import Movies from "./pages/Movies/Movies";
-import Series from "./pages/Series/Series";
-import Search from "./pages/Search/Search";
+import { lazy, Suspense } from "react";
+import CircularLoading from "./components/CircularLoading";
+
+const Series = lazy(() => import('./pages/Series/Series.jsx'))
+const Search = lazy(() => import('./pages/Search/Search'))
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Header />
         <div className="app">
-          <Container style={{paddingBottom:'70px'}}>
+          <Container style={{ paddingBottom: '70px' }}>
             <Routes>
-              <Route path="/" element={<Trending/>} caseSensitive />
-              <Route path="/movies" element={<Movies/>}/>
-              <Route path="/series" element={<Series/>}/>
-              <Route path="/search" element={<Search/>}/>
+              <Route path="/" element={<Trending />} caseSensitive />
+              <Route path="/movies" element={<Movies />} />
+              <Route path="/series" element={
+                <Suspense fallback={<CircularLoading />}>
+                  <Series />
+                </Suspense>
+              } />
+              <Route path="/search" element={
+                <Suspense fallback={<CircularLoading />}>
+                  <Search />
+                </Suspense>
+              } />
             </Routes>
           </Container>
           <LabelBottomNavigation />
