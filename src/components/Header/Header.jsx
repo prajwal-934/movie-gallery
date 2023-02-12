@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 const Header = () => {
   return (
-    <div className='header' onClick={()=>{window.scroll(0,0)}}>Entertainment Hub</div>
+    <div className='header' onClick={()=>{window.scroll(0,0)}}>Movie Gallery</div>
   )
 }
 
